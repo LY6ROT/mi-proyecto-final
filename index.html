@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SearchGym - Encuentra tu Gimnasio Ideal</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display.swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo nav-link" data-page="page-inicio">SearchGym</a>
+            
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="page-inicio">Inicio</a></li>
+                    <li><a href="#" class="nav-link" data-page="page-gimnasios">Gimnasios</a></li>
+                    <li><a href="#" class="nav-link" data-page="page-ofertas">Ofertas</a></li>
+                    <li><a href="#" class="nav-link" data-page="page-cuenta">Mi Cuenta</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-icons">
+                <i class="fa-solid fa-search icon-btn" id="global-search-btn"></i>
+                <div class="cart-icon-wrapper icon-btn" id="cart-sidebar-btn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-badge" id="cart-badge-count">0</span>
+                </div>
+                <i class="fa-solid fa-bars nav-mobile-toggle" id="mobile-menu-toggle"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-mobile-menu" id="mobile-menu">
+        <i class="fa-solid fa-times nav-mobile-close" id="mobile-menu-close"></i>
+        <ul>
+            <li><a href="#" class="nav-link" data-page="page-inicio">Inicio</a></li>
+            <li><a href="#" class="nav-link" data-page="page-gimnasios">Gimnasios</a></li>
+            <li><a href="#" class="nav-link" data-page="page-ofertas">Ofertas</a></li>
+            <li><a href="#" class="nav-link" data-page="page-cuenta">Mi Cuenta</a></li>
+        </ul>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay"></div>
+    
+    <div class="search-modal" id="search-modal">
+        <div class="search-modal-header">
+            <h2>Buscar Gimnasios o Planes</h2>
+            <button class="modal-close-btn" data-close-modal="search-modal"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="search-modal-body">
+            <input type="text" id="global-search-input" placeholder="Escribe el nombre de un gimnasio...">
+            <div id="search-results-container">
+                </div>
+        </div>
+    </div>
+    
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h2>Tu Carrito</h2>
+            <button class="modal-close-btn" data-close-modal="cart-sidebar"><i class="fa-solid fa-times"></i></button>
+        </div>
+        <div class="cart-sidebar-body" id="cart-sidebar-items">
+            </div>
+        <div class="cart-sidebar-footer">
+            <div class="cart-sidebar-subtotal">
+                <span>Subtotal:</span>
+                <span id="cart-sidebar-subtotal">S/ 0.00</span>
+            </div>
+            <button class="btn btn-primario nav-link" data-page="page-carrito">Ver Carrito Completo</button>
+            <button class="btn btn-secundario">Ir a Pagar</button>
+        </div>
+    </div>
+
+    <main id="main-content">
+
+        <section id="page-inicio" class="page-section active" style="padding: 0;">
+            
+            <div class="hero-carousel" id="hero-carousel">
+                <div class="carousel-slides" id="carousel-slides-container">
+                    </div>
+                <div class="carousel-controls" id="carousel-dots-container">
+                    </div>
+            </div>
+
+            <div class="home-section">
+                <div class="container">
+                    <h2 class="section-title">Encuentra tu lugar ideal</h2>
+                    <div class="home-grid">
+                        <div class="home-card">
+                            <i class="fa-solid fa-tags"></i>
+                            <h3>Membresías Exclusivas</h3>
+                            <p>Accede a planes y precios que no encontrarás en otro lugar. Tu entrenamiento empieza aquí.</p>
+                        </div>
+                        <div class="home-card">
+                            <i class="fa-solid fa-bolt"></i>
+                            <h3>Ofertas Flash</h3>
+                            <p>Descuentos por tiempo limitado en los mejores gimnasios de Lima. ¡No te los pierdas!</p>
+                        </div>
+                        <div class="home-card">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                            <h3>Busca por Zona</h3>
+                            <p>Filtra por distrito y encuentra el gimnasio perfecto cerca de tu casa o trabajo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="home-section" style="background-color: var(--color-blanco);">
+                <div class="container">
+                    <h2 class="section-title">¿Qué es SearchGym?</h2>
+                    <p style="max-width: 800px; margin: 0 auto 2rem auto; font-size: 1.1rem;">
+                        Somos el directorio definitivo de gimnasios en Lima. Facilitamos tu búsqueda, comparamos precios, ubicaciones y, lo más importante, reunimos todos los descuentos y promociones exclusivas para que empezar tu vida fit sea fácil y accesible.
+                    </p>
+                    <button class="btn btn-primario nav-link" data-page="page-gimnasios">Encuentra tu Gym Ahora</button>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="page-gimnasios" class="page-section">
+            <div class="container">
+                <div class="gimnasios-header">
+                    <div class="search-container">
+                        <input type="text" id="gym-search-input" placeholder="Buscar gimnasio por nombre...">
+                    </div>
+                    <div class="map-container">
+                        <span>Mapa Interactivo (Simulado)</span>
+                    </div>
+                </div>
+
+                <div class="zona-buttons-container" id="zona-filters">
+                    <button class="zona-btn active" data-zona="todos">
+                        <i class="fa-solid fa-grip"></i>
+                        <span>Todos</span>
+                    </button>
+                    <button class="zona-btn" data-zona="norte">
+                        <i class="fa-solid fa-compass"></i>
+                        <span>Lima Norte</span>
+                    </button>
+                    <button class="zona-btn" data-zona="este">
+                        <i class="fa-solid fa-mountain"></i>
+                        <span>Lima Este</span>
+                    </button>
+                    <button class="zona-btn" data-zona="sur">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                        <span>Lima Sur</span>
+                    </button>
+                    <button class="zona-btn" data-zona="centro">
+                        <i class="fa-solid fa-city"></i>
+                        <span>Centro</span>
+                    </button>
+                    <button class="zona-btn" data-zona="moderna">
+                        <i class="fa-solid fa-tower-broadcast"></i>
+                        <span>L. Moderna</span>
+                    </button>
+                </div>
+
+                <div class="gym-grid" id="gym-grid-container">
+                    </div>
+                <p id="no-results-message" class="hidden" style="text-align: center; font-size: 1.2rem; margin-top: 2rem;">
+                    No se encontraron gimnasios que coincidan con tu búsqueda.
+                </p>
+            </div>
+        </section>
+
+        <section id="page-ofertas" class="page-section">
+            <div class="container" style="text-align: center;">
+                <h1 class="section-title">Próximamente</h1>
+                <p style="font-size: 1.2rem;">Estamos trabajando para traerte las mejores ofertas y promociones. ¡Vuelve pronto!</p>
+                <i class="fa-solid fa-person-digging" style="font-size: 6rem; color: var(--color-acento); margin-top: 2rem;"></i>
+            </div>
+        </section>
+
+        <section id="page-cuenta" class="page-section">
+            <div class="login-page-container">
+                <div class="login-wrapper">
+                    <div class="login-tabs">
+                        <button class="login-tab active" data-form="login-form">Iniciar Sesión</button>
+                        <button class="login-tab" data-form="register-form">Registrarse</button>
+                    </div>
+
+                    <div class="login-form-container">
+                        <form id="login-form" class="login-form active" novalidate>
+                            <h2>Bienvenido de Nuevo</h2>
+                            <div class="form-group">
+                                <label for="login-email">Correo Electrónico</label>
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="login-email" placeholder="tu.correo@ejemplo.com" required>
+                                <span class="form-validation-error">Por favor, ingresa un correo válido.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="login-pass">Contraseña</label>
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="login-pass" placeholder="••••••••" required>
+                                <span class="form-validation-error">La contraseña es requerida.</span>
+                            </div>
+                            <div class="form-options">
+                                <label><input type="checkbox"> Recuérdame</label>
+                                <a href="#">¿Olvidaste tu contraseña?</a>
+                            </div>
+                            <button type="submit" class="btn btn-primario">Ingresar</button>
+                            <p class="form-switch-text">
+                                ¿No tienes cuenta? <span class="form-switch-link" data-form="register-form">Regístrate aquí</span>
+                            </p>
+                        </form>
+
+                        <form id="register-form" class="login-form" novalidate>
+                            <h2>Crea tu Cuenta</h2>
+                            <div class="form-group">
+                                <label for="reg-name">Nombre Completo</label>
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="reg-name" placeholder="Tu Nombre Completo" required>
+                                <span class="form-validation-error">Tu nombre es requerido.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-email">Correo Electrónico</label>
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="reg-email" placeholder="tu.correo@ejemplo.com" required>
+                                <span class="form-validation-error">Por favor, ingresa un correo válido.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-pass">Contraseña</label>
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="reg-pass" placeholder="Mínimo 6 caracteres" required>
+                                <span class="form-validation-error">La contraseña debe tener al menos 6 caracteres.</span>
+                            </div>
+                            <button type="submit" class="btn btn-primario">Crear Cuenta</button>
+                            <p class="form-switch-text">
+                                ¿Ya tienes cuenta? <span class="form-switch-link" data-form="login-form">Inicia sesión</span>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-carrito" class="page-section">
+            <div class="container">
+                <h1 class="section-title" style="text-align: left;">Tu Carrito de Compras</h1>
+                <div class="cart-page-layout">
+                    <div class="cart-items-panel">
+                        <div id="cart-page-items-container">
+                            </div>
+                    </div>
+                    
+                    <div class="cart-summary-panel">
+                        <h2>Resumen de tu Orden</h2>
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="cart-page-subtotal">S/ 0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>IGV (18%)</span>
+                            <span id="cart-page-igv">S/ 0.00</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span id="cart-page-total">S/ 0.00</span>
+                        </div>
+                        <button class="btn btn-primario">Proceder al Pago</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-detalle" class="page-section">
+            <div class="container">
+                <div id="detalle-content-container">
+                    <p>Cargando detalles del gimnasio...</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>SearchGym</h4>
+                    <p>Tu directorio de gimnasios en Lima. Encuentra, compara y ahorra.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="page-inicio">Inicio</a></li>
+                        <li><a href="#" class="nav-link" data-page="page-gimnasios">Gimnasios</a></li>
+                        <li><a href="#" class="nav-link" data-page="page-ofertas">Ofertas</a></li>
+                        <li><a href="#" class="nav-link" data-page="page-cuenta">Mi Cuenta</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Política de Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SearchGym. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="script.js" defer></script>
+
+</body>
+</html>
